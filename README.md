@@ -1,6 +1,6 @@
-# sample_flutter
+# TaskTracker
 
-A new Flutter project.
+A first flutter app i did to test/learn flutter and dart. it is a simple Todo list application that use default material.dart and flutter-provider
 
 ## Getting Started
 
