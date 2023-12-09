@@ -41,7 +41,33 @@ class CompleteTodos extends StatelessWidget {
               color: Colors.deepPurple,
             ),
           ),
-          const SizedBox(height: 12),
+          const SizedBox(height: 10),
+          Align(
+            alignment: Alignment.topLeft,
+            child: IntrinsicWidth(
+              child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.red, shape: const LinearBorder()),
+                  onPressed: () {
+                    Provider.of<Providers>(context, listen: false)
+                        .clearAllComplete();
+                  },
+                  child: const Row(
+                    children: [
+                      Icon(
+                        Icons.clear_all,
+                        color: Colors.white,
+                      ),
+                      SizedBox(width: 10),
+                      Text(
+                        "Clear all",
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    ],
+                  )),
+            ),
+          ),
+          const SizedBox(height: 14),
           Expanded(
             child: ListView.builder(
                 itemCount: todos.length,
