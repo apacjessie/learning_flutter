@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../main.dart';
-import '../class//user.dart';
+import 'package:sample_flutter/components/textfield.dart';
+import 'package:sample_flutter/providers/providers.dart';
+import '../class/user.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
 
   @override
-  _LoginScreenState createState() => _LoginScreenState();
+  LoginScreenState createState() => LoginScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class LoginScreenState extends State<LoginScreen> {
   final TextEditingController usernameController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   bool errorCredential = false;
@@ -29,55 +30,26 @@ class _LoginScreenState extends State<LoginScreen> {
         backgroundColor: Colors.blue,
         body: Center(
           child: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 15.0, horizontal: 50),
+            padding: const EdgeInsets.symmetric(vertical: 0, horizontal: 50),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const Text(
-                  'Welcome back 👋',
-                  style: TextStyle(
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold,
-                      letterSpacing: 2,
-                      color: Colors.white),
+                const Icon(
+                  Icons.lock,
+                  color: Colors.white,
+                  size: 80,
                 ),
+                const SizedBox(height: 30),
+                const Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      'Welcome back you\'ve been missed.',
+                      style: TextStyle(fontSize: 14.5, color: Colors.white),
+                    )),
                 const SizedBox(height: 20),
-                TextFormField(
-                  controller: usernameController,
-                  cursorColor: Colors.white,
-                  style: const TextStyle(color: Colors.white),
-                  decoration: const InputDecoration(
-                    labelText: 'Username',
-                    labelStyle: TextStyle(
-                      color: Colors.white,
-                    ),
-                    floatingLabelStyle: TextStyle(color: Colors.white),
-                    enabledBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(color: Colors.white),
-                    ),
-                    focusedBorder: UnderlineInputBorder(
-                        borderSide: BorderSide(color: Colors.white)),
-                  ),
-                ),
+                textfield(usernameController, "Username"),
                 const SizedBox(height: 20),
-                TextFormField(
-                  controller: passwordController,
-                  cursorColor: Colors.white,
-                  style: const TextStyle(color: Colors.white),
-                  decoration: const InputDecoration(
-                    labelText: 'Password',
-                    labelStyle: TextStyle(
-                      color: Colors.white,
-                    ),
-                    floatingLabelStyle: TextStyle(color: Colors.white),
-                    enabledBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(color: Colors.white),
-                    ),
-                    focusedBorder: UnderlineInputBorder(
-                        borderSide: BorderSide(color: Colors.white)),
-                  ),
-                  obscureText: true,
-                ),
+                textfield(passwordController, "Password", obscure: true),
                 const SizedBox(height: 10),
                 if (errorCredential)
                   const Align(
@@ -102,16 +74,19 @@ class _LoginScreenState extends State<LoginScreen> {
                       padding: const EdgeInsets.only(top: 12.0),
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.white,
-                        ),
+                            padding: const EdgeInsets.all(6),
+                            backgroundColor: Colors.white,
+                            shape: const RoundedRectangleBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(5)))),
                         onPressed: () {
                           User user = User("apacjessie", "password");
                           String username = usernameController.text.trim();
                           String password = passwordController.text.trim();
                           if (username == user.username &&
                               password == user.password) {
-                            Provider.of<AuthProvider>(context, listen: false)
-                                .login();
+                            Provider.of<Providers>(context, listen: false)
+                                .login(username);
                             setState(() {
                               errorCredential = false;
                             });
@@ -125,11 +100,29 @@ class _LoginScreenState extends State<LoginScreen> {
                           'Login',
                           style: TextStyle(
                             color: Colors.blue,
-                            fontSize: 17,
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                            letterSpacing: 1,
                           ),
                         ),
                       ),
-                    ))
+                    )),
+                const SizedBox(height: 10),
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: TextButton(
+                      onPressed: () {},
+                      style: const ButtonStyle(
+                          padding: MaterialStatePropertyAll(EdgeInsets.all(0)),
+                          shape: MaterialStatePropertyAll(
+                              RoundedRectangleBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(3.5))))),
+                      child: const Text(
+                        "No account? register now",
+                        style: TextStyle(color: Colors.white),
+                      )),
+                )
               ],
             ),
           ),
