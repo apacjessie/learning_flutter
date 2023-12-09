@@ -45,8 +45,8 @@ class TodoScreen extends StatelessWidget {
                 itemBuilder: (contexisCompletet, index) {
                   return Column(
                     children: [
-                      tile(index, todos[index].task, todos[index].isComplete,
-                          onTileTapped, onDismissed),
+                      tile(todos[index].id, todos[index].task,
+                          todos[index].isComplete, onTileTapped, onDismissed),
                     ],
                   );
                 }),

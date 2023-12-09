@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 
-Dismissible tile(index, task, isComplete, toggleTaskCompletion, deleteTask) {
+Dismissible tile(id, task, isComplete, toggleTaskCompletion, deleteTask) {
   return Dismissible(
       key: UniqueKey(),
-      onDismissed: (_) => deleteTask(index),
+      onDismissed: (_) => deleteTask(id),
       child: Column(
         children: [
           CheckboxListTile(
             value: isComplete,
-            onChanged: (_) => toggleTaskCompletion(index),
+            onChanged: (_) => toggleTaskCompletion(id),
             activeColor: Colors.blue,
             checkColor: Colors.white,
             tileColor: isComplete

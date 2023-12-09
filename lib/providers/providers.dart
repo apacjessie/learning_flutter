@@ -27,12 +27,14 @@ class Providers extends ChangeNotifier {
     notifyListeners();
   }
 
-  void deleteTask(index) {
-    _todos.removeAt(index);
+  void deleteTask(String id) {
+    _todos.removeWhere((task) => task.id == id);
+    notifyListeners();
   }
 
-  void toggleTaskCompletion(index) {
-    _todos[index].isComplete = !_todos[index].isComplete;
+  void toggleTaskCompletion(String id) {
+    final task = _todos.firstWhere((task) => task.id == id);
+    task.isComplete = !task.isComplete;
     notifyListeners();
   }
 }
