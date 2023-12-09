@@ -37,4 +37,9 @@ class Providers extends ChangeNotifier {
     task.isComplete = !task.isComplete;
     notifyListeners();
   }
+
+  void clearAllComplete() {
+    _todos.removeWhere((task) => task.isComplete);
+    notifyListeners();
+  }
 }
