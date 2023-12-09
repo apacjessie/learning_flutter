@@ -27,6 +27,10 @@ class Providers extends ChangeNotifier {
     notifyListeners();
   }
 
+  void deleteTask(index) {
+    _todos.removeAt(index);
+  }
+
   void toggleTaskCompletion(index) {
     _todos[index].isComplete = !_todos[index].isComplete;
     notifyListeners();
