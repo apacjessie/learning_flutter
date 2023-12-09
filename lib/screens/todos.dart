@@ -16,11 +16,29 @@ class TodoScreen extends StatelessWidget {
           .toggleTaskCompletion(index);
     }
 
+    void onDismissed(index) {
+      Provider.of<Providers>(context, listen: false).deleteTask(index);
+    }
+
     return Padding(
       padding: const EdgeInsets.all(20),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text("Todos page"),
+          const Text(
+            "List of task(s)",
+            style: TextStyle(
+                fontSize: 16, color: Colors.blue, fontWeight: FontWeight.bold),
+          ),
+          const SizedBox(height: 3),
+          const Text(
+            "Slide to left or right to delete task",
+            style: TextStyle(
+              fontSize: 14,
+              color: Colors.deepPurple,
+            ),
+          ),
+          const SizedBox(height: 12),
           Expanded(
             child: ListView.builder(
                 itemCount: todos.length,
@@ -28,10 +46,7 @@ class TodoScreen extends StatelessWidget {
                   return Column(
                     children: [
                       tile(index, todos[index].task, todos[index].isComplete,
-                          onTileTapped),
-                      const SizedBox(
-                        height: 10,
-                      )
+                          onTileTapped, onDismissed),
                     ],
                   );
                 }),
