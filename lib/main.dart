@@ -81,9 +81,10 @@ class MyAppState extends State<MyApp> {
               ElevatedButton(
                   onPressed: () {
                     String task = taskName.text;
-
                     Provider.of<Providers>(context, listen: false)
                         .addTask(generateRandomId(), task);
+                    taskName.clear();
+                    Navigator.pop(context);
                   },
                   style: const ButtonStyle(
                       backgroundColor: MaterialStatePropertyAll(Colors.blue),
