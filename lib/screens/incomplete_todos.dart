@@ -10,7 +10,7 @@ class IncompleteTodos extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List<Todos> todos = Provider.of<Providers>(context, listen: true)
-        .todos
+        .userTodos
         .where((task) => !task.isComplete)
         .toList();
 

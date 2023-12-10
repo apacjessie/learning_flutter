@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sample_flutter/components/textfield.dart';
 import 'package:sample_flutter/providers/providers.dart';
+import 'package:sample_flutter/screens/registration.dart';
 import '../class/user.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -80,13 +81,14 @@ class LoginScreenState extends State<LoginScreen> {
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(5)))),
                         onPressed: () {
-                          User user = User("apacjessie", "password");
                           String username = usernameController.text.trim();
                           String password = passwordController.text.trim();
-                          if (username == user.username &&
-                              password == user.password) {
+                          final User? loggedUser =
+                              Provider.of<Providers>(context, listen: false)
+                                  .isCredentialValid(username, password);
+                          if (loggedUser != null) {
                             Provider.of<Providers>(context, listen: false)
-                                .login(username);
+                                .login(loggedUser.id);
                             setState(() {
                               errorCredential = false;
                             });
@@ -111,7 +113,16 @@ class LoginScreenState extends State<LoginScreen> {
                 Align(
                   alignment: Alignment.centerLeft,
                   child: TextButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        setState(() {
+                          errorCredential = false;
+                        });
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    const RegistrationScreen()));
+                      },
                       style: const ButtonStyle(
                           padding: MaterialStatePropertyAll(EdgeInsets.all(0)),
                           shape: MaterialStatePropertyAll(

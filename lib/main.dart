@@ -82,7 +82,7 @@ class MyAppState extends State<MyApp> {
                   onPressed: () {
                     String task = taskName.text;
                     Provider.of<Providers>(context, listen: false)
-                        .addTask(generateRandomId(), task);
+                        .addTask(task);
                     taskName.clear();
                     Navigator.pop(context);
                   },

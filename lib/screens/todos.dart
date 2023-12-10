@@ -9,7 +9,7 @@ class TodoScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<Todos> todos = Provider.of<Providers>(context, listen: true).todos;
+    List<Todos> todos = Provider.of<Providers>(context, listen: true).userTodos;
 
     void onTileTapped(index) {
       Provider.of<Providers>(context, listen: false)

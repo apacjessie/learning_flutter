@@ -1,45 +1,97 @@
 import 'package:flutter/material.dart';
 import 'package:sample_flutter/class/todos.dart';
+import 'package:sample_flutter/class/user.dart';
+import 'package:sample_flutter/main.dart';
 
 class Providers extends ChangeNotifier {
   bool _isLoggedIn = false;
-  String _username = "";
-  final List<Todos> _todos = [];
+  String _userId = "";
+  final List<User> _users = [];
 
   bool get isLoggedIn => _isLoggedIn;
-  String get username => _username;
-  List<Todos> get todos => _todos;
+  String get userId => _userId;
+  List<User> get users => _users;
+  List<Todos> get userTodos {
+    User? user = findUserById(_userId);
+    return user?.todos ?? [];
+  }
 
-  void login(String username) {
+  User? isCredentialValid(String username, String password) {
+    for (User user in _users) {
+      if (user.username == username && user.password == password) {
+        return user;
+      }
+    }
+    return null;
+  }
+
+  String? getUsername() {
+    User? user = findUserById(_userId);
+    if (user != null) {
+      return user.username;
+    }
+    return null;
+  }
+
+  void login(String userId) {
     _isLoggedIn = true;
-    _username = username;
+    _userId = userId;
     notifyListeners();
   }
 
   void logout() {
     _isLoggedIn = false;
-    _username = "";
+    _userId = "";
     notifyListeners();
   }
 
-  void addTask(id, task) {
-    _todos.add(Todos(id, task));
+  void addUser(String username, String password) {
+    users.add(User(
+      generateRandomId(),
+      username,
+      password,
+    ));
+    notifyListeners();
+  }
+
+  User? findUserById(String userId) {
+    try {
+      return _users.firstWhere((user) => user.id == userId);
+    } catch (_) {
+      return null;
+    }
+  }
+
+  void addTask(task) {
+    User? user = findUserById(_userId);
+    if (user != null) {
+      user.todos.add(Todos(userId, task));
+    }
     notifyListeners();
   }
 
   void deleteTask(String id) {
-    _todos.removeWhere((task) => task.id == id);
+    User? user = findUserById(_userId);
+    if (user != null) {
+      user.todos.removeWhere((task) => task.id == id);
+    }
     notifyListeners();
   }
 
   void toggleTaskCompletion(String id) {
-    final task = _todos.firstWhere((task) => task.id == id);
-    task.isComplete = !task.isComplete;
+    User? user = findUserById(_userId);
+    if (user != null) {
+      final task = user.todos.firstWhere((task) => task.id == id);
+      task.isComplete = !task.isComplete;
+    }
     notifyListeners();
   }
 
   void clearAllComplete() {
-    _todos.removeWhere((task) => task.isComplete);
+    User? user = findUserById(_userId);
+    if (user != null) {
+      user.todos.removeWhere((task) => task.isComplete);
+    }
     notifyListeners();
   }
 }

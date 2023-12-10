@@ -1,6 +1,9 @@
+import 'package:sample_flutter/class/todos.dart';
+
 class User {
+  String id;
   String username;
   String password;
-
-  User(this.username, this.password);
+  List<Todos> todos = [];
+  User(this.id, this.username, this.password, {todos = const []});
 }
