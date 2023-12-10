@@ -14,9 +14,8 @@ class CompleteTodos extends StatelessWidget {
         .where((task) => task.isComplete)
         .toList();
 
-    void onTileTapped(index) {
-      Provider.of<Providers>(context, listen: false)
-          .toggleTaskCompletion(index);
+    void onTileTapped(id) {
+      Provider.of<Providers>(context, listen: false).toggleTaskCompletion(id);
     }
 
     void onDismissed(index) {

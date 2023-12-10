@@ -11,9 +11,8 @@ class TodoScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     List<Todos> todos = Provider.of<Providers>(context, listen: true).userTodos;
 
-    void onTileTapped(index) {
-      Provider.of<Providers>(context, listen: false)
-          .toggleTaskCompletion(index);
+    void onTileTapped(id) {
+      Provider.of<Providers>(context, listen: false).toggleTaskCompletion(id);
     }
 
     void onDismissed(index) {
