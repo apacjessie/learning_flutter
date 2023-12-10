@@ -65,7 +65,7 @@ class Providers extends ChangeNotifier {
   void addTask(task) {
     User? user = findUserById(_userId);
     if (user != null) {
-      user.todos.add(Todos(userId, task));
+      user.todos.add(Todos(generateRandomId(), task));
     }
     notifyListeners();
   }
