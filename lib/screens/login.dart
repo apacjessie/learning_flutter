@@ -80,15 +80,19 @@ class LoginScreenState extends State<LoginScreen> {
                             shape: const RoundedRectangleBorder(
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(5)))),
-                        onPressed: () {
+                        onPressed: () async {
+                          BuildContext currentContext = context;
                           String username = usernameController.text.trim();
                           String password = passwordController.text.trim();
-                          final User? loggedUser =
+                          final Future<User?> loggedUser =
                               Provider.of<Providers>(context, listen: false)
                                   .isCredentialValid(username, password);
-                          if (loggedUser != null) {
-                            Provider.of<Providers>(context, listen: false)
-                                .login(loggedUser.id);
+                          User? user = await loggedUser;
+                          if (user != null) {
+                            // ignore: use_build_context_synchronously
+                            Provider.of<Providers>(currentContext,
+                                    listen: false)
+                                .login(user);
                             setState(() {
                               errorCredential = false;
                             });

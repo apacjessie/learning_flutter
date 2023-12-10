@@ -111,7 +111,7 @@ class RegistrationScreenState extends State<RegistrationScreen> {
                                   });
                                 }
                                 Provider.of<Providers>(context, listen: false)
-                                    .addUser(username, password);
+                                    .register(username, password);
                                 Navigator.pop(context);
                               },
                               child: const Text(

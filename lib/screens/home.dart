@@ -13,14 +13,13 @@ class HomeScreen extends StatefulWidget {
 class HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
-    String? username =
-        Provider.of<Providers>(context, listen: false).getUsername();
-    List<Todos> todos = Provider.of<Providers>(context, listen: true).userTodos;
+    String? username = Provider.of<Providers>(context, listen: false).username;
+    List<Todos> todos = Provider.of<Providers>(context, listen: true).todos;
     int allTask = todos.length;
     int completedTask = todos.where((task) => task.isComplete).toList().length;
     int incompleteTask =
         todos.where((task) => !task.isComplete).toList().length;
-    ;
+
     return Padding(
       padding: const EdgeInsets.all(20),
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [

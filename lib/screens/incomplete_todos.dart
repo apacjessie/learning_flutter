@@ -10,7 +10,7 @@ class IncompleteTodos extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List<Todos> todos = Provider.of<Providers>(context, listen: true)
-        .userTodos
+        .todos
         .where((task) => !task.isComplete)
         .toList();
 
@@ -18,8 +18,8 @@ class IncompleteTodos extends StatelessWidget {
       Provider.of<Providers>(context, listen: false).toggleTaskCompletion(id);
     }
 
-    void onDismissed(index) {
-      Provider.of<Providers>(context, listen: false).deleteTask(index);
+    void onDismissed(id) {
+      Provider.of<Providers>(context, listen: false).deleteTask(id);
     }
 
     return Padding(
