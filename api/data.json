@@ -1,1 +1,22 @@
-[]
+[
+  {
+    "id": "6576942290307",
+    "username": "apac",
+    "password": "apac",
+    "todos": []
+  },
+  {
+    "id": "6576942f64687",
+    "username": "wat",
+    "password": "wat",
+    "todos": [{ "id": "65769691669fa", "task": "aw", "isComplete": true }]
+  },
+  {
+    "id": "6576978ae925e",
+    "username": "lol",
+    "password": "lol",
+    "todos": [
+      { "id": "657697a1511ff", "task": "sdfgsdfg", "isComplete": false }
+    ]
+  }
+]

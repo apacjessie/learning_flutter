@@ -81,6 +81,7 @@ class MyAppState extends State<MyApp> {
               ElevatedButton(
                   onPressed: () {
                     String task = taskName.text;
+                    if (task.trim() == '') return;
                     Provider.of<Providers>(context, listen: false)
                         .addTask(task);
                     taskName.clear();

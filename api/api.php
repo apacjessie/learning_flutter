@@ -1,5 +1,13 @@
 <?php
 
+header('Access-Control-Allow-Origin: *'); 
+header('Access-Control-Allow-Headers: Content-Type, Authorization');
+header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS');
+header('Content-Type: application/json');
+$file = 'data.json';
+$data = file_get_contents($file);
+$array = json_decode($data, true) ?? [];
+
 class Todo {
     public  $id;
     public $task;
@@ -30,7 +38,7 @@ class User {
             'id' => $this->id,
             'username' => $this->username,
             'password' => $this->password,
-            'todos' => $this->todos,
+            'todos' => array_values($this->todos)
         ];
     }
 
@@ -40,9 +48,9 @@ class User {
     }
 
     public function deleteTask($taskId){
-        $this->todos = array_filter($this->todos, function ($task) use ($taskId) {
+        $this->todos = array_values(array_filter($this->todos, function ($task) use ($taskId) {
             return $task['id'] !== $taskId;
-        });
+        }));
     } 
 
     public function toggleTaskCompletion($taskId) {
@@ -60,11 +68,6 @@ class User {
         });
     }
 }
-
-header('Content-Type: application/json');
-$file = 'data.json';
-$data = file_get_contents($file);
-$array = json_decode($data, true) ?? [];
 
 
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
@@ -107,8 +110,9 @@ else if($_SERVER['REQUEST_METHOD'] === "POST") {
                 return;
             
             }
-            echo json_encode(['status'=>'error', 'message'=>'user not found']);
         }
+        echo json_encode(['status'=>'error', 'message'=>'user not found']);
+
     }
     if($body['type'] === 'deleteTask') {
         $userId = $body['userId'];
@@ -124,8 +128,8 @@ else if($_SERVER['REQUEST_METHOD'] === "POST") {
                 return;
             
             }
-            echo json_encode(['status'=>'error', 'message'=>'user addTasknot found']);
         }
+        echo json_encode(['status'=>'error', 'message'=>'user not found', 'response'=>[]]);
     }  
     if($body['type'] === 'toggleTaskCompletion') {
         $userId = $body['userId'];
