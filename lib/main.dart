@@ -116,8 +116,9 @@ class MyAppState extends State<MyApp> {
     return MaterialApp(
       title: 'TaskTracker',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
+          primarySwatch: Colors.blue,
+          appBarTheme:
+              const AppBarTheme(iconTheme: IconThemeData(color: Colors.white))),
       home: Consumer<Providers>(
         builder: (context, authProvider, child) {
           return authProvider.isLoggedIn
@@ -144,8 +145,8 @@ class MyAppState extends State<MyApp> {
                       color: Colors.white,
                     ),
                   ),
-                  bottomNavigationBar: navigationbar(
-                      _selectedIndex, _onItemTapped, _onLoggedOut))
+                  drawer: navigationbar(
+                      context, _selectedIndex, _onItemTapped, _onLoggedOut))
               : const LoginScreen();
         },
       ),

@@ -3,7 +3,6 @@ import 'package:provider/provider.dart';
 import 'package:sample_flutter/components/textfield.dart';
 import 'package:sample_flutter/providers/providers.dart';
 import 'package:sample_flutter/screens/registration.dart';
-import '../class/user.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -81,18 +80,13 @@ class LoginScreenState extends State<LoginScreen> {
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(5)))),
                         onPressed: () async {
-                          BuildContext currentContext = context;
                           String username = usernameController.text.trim();
                           String password = passwordController.text.trim();
-                          final Future<User?> loggedUser =
+                          bool isValid =
                               Provider.of<Providers>(context, listen: false)
                                   .isCredentialValid(username, password);
-                          User? user = await loggedUser;
-                          if (user != null) {
-                            // ignore: use_build_context_synchronously
-                            Provider.of<Providers>(currentContext,
-                                    listen: false)
-                                .login(user);
+
+                          if (isValid) {
                             setState(() {
                               errorCredential = false;
                             });

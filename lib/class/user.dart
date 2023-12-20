@@ -5,5 +5,5 @@ class User {
   String username;
   String password;
   List<Todos> todos = [];
-  User(this.id, this.username, this.password, {todos = const []});
+  User(this.id, this.username, this.password, this.todos);
 }
