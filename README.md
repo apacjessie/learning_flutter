@@ -1,4 +1,4 @@
-# TaskTracker
+# Flutter App
 
 A first flutter app i did to test/learn flutter and dart. it is a simple Todo list application that use default material.dart and flutter-provider
 
