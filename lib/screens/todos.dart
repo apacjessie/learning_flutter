@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:sample_flutter/class/todos.dart';
-import 'package:sample_flutter/components/tile.dart';
-import 'package:sample_flutter/providers/providers.dart';
+import 'package:checkmate/class/todos.dart';
+import 'package:checkmate/components/tile.dart';
+import 'package:checkmate/providers/providers.dart';
 
 class TodoScreen extends StatelessWidget {
   const TodoScreen({super.key});
@@ -25,16 +25,16 @@ class TodoScreen extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const Text(
-            "List of task(s)",
+            "All your todo(s)",
             style: TextStyle(
-                fontSize: 16, color: Colors.blue, fontWeight: FontWeight.bold),
+                fontSize: 16, color: Colors.red, fontWeight: FontWeight.bold),
           ),
           const SizedBox(height: 3),
           const Text(
             "Slide to left or right to delete task",
             style: TextStyle(
               fontSize: 14,
-              color: Colors.deepPurple,
+              color: Colors.grey,
             ),
           ),
           const SizedBox(height: 12),

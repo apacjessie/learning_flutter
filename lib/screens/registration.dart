@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:sample_flutter/providers/providers.dart';
+import 'package:checkmate/providers/providers.dart';
 import '../components/textfield.dart';
 
 class RegistrationScreen extends StatefulWidget {
@@ -29,7 +29,7 @@ class RegistrationScreenState extends State<RegistrationScreen> {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-          backgroundColor: Colors.blue,
+          backgroundColor: const Color(0xFFe74c3c),
           body: Center(
             child: SingleChildScrollView(
               child: Padding(
@@ -37,16 +37,18 @@ class RegistrationScreenState extends State<RegistrationScreen> {
                       const EdgeInsets.symmetric(vertical: 120, horizontal: 50),
                   child: Column(
                     children: [
-                      const Icon(
-                        Icons.person,
-                        color: Colors.white,
-                        size: 80,
+                      const Text(
+                        "CheckMate ✔",
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 25),
                       ),
                       const SizedBox(height: 30),
                       const Align(
                           alignment: Alignment.centerLeft,
                           child: Text(
-                            'Start organizing your tasks! Sign up now to create your TaskTracker account.',
+                            'Sign up for CheckMate, where productivity meets simplicity. Your tasks, your way.',
                             style:
                                 TextStyle(fontSize: 14.5, color: Colors.white),
                           )),
@@ -117,7 +119,7 @@ class RegistrationScreenState extends State<RegistrationScreen> {
                               child: const Text(
                                 'Register',
                                 style: TextStyle(
-                                  color: Colors.blue,
+                                  color: Color(0xFFe74c3c),
                                   fontSize: 16,
                                   fontWeight: FontWeight.bold,
                                   letterSpacing: 1,
@@ -142,7 +144,7 @@ class RegistrationScreenState extends State<RegistrationScreen> {
                                         borderRadius: BorderRadius.all(
                                             Radius.circular(3.5))))),
                             child: const Text(
-                              "Return to login",
+                              "Back to login",
                               style: TextStyle(color: Colors.white),
                             )),
                       )

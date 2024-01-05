@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:sample_flutter/class/todos.dart';
-import 'package:sample_flutter/providers/providers.dart';
+import 'package:checkmate/class/todos.dart';
+import 'package:checkmate/providers/providers.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -29,31 +29,36 @@ class HomeScreenState extends State<HomeScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "Hello $username 👋",
+                  "Welcome $username 👋🏼",
                   style: const TextStyle(
-                      color: Colors.blue,
+                      color: Color(0xFFe74c3c),
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
                       letterSpacing: 1),
                 ),
                 const SizedBox(height: 3),
                 const Text(
-                  "Get organized and boost your productivity with our simple and intuitive todo list.",
-                  style: TextStyle(fontSize: 14),
+                  "Organize effortlessly and supercharge productivity. ",
+                  style: TextStyle(
+                    fontSize: 14,
+                    color: Colors.grey,
+                  ),
                 ),
                 const SizedBox(height: 10),
                 const Text(
-                  "Quickly add and manage your tasks, and keep track of your progress effortlessly.",
-                  style: TextStyle(fontSize: 14),
+                  "Add, manage, and track tasks with ease. Your simple solution for a more organized and productive day.",
+                  style: TextStyle(fontSize: 14, color: Colors.grey),
                 ),
               ],
             )),
         const SizedBox(height: 20),
-        _box("All tasks", "You have $allTask task(s)"),
+        _box("Your todo(s)", "You have $allTask task(s)"),
         const SizedBox(height: 14),
-        _box("Completed tasks", "You have $completedTask completed task(s)"),
+        _box("Your Completed todo(s)",
+            "You have $completedTask completed task(s)"),
         const SizedBox(height: 14),
-        _box("Incomplete tasks", "You have $incompleteTask incomplete task(s)"),
+        _box("Your Incomplete todo(s)",
+            "You have $incompleteTask incomplete task(s)"),
       ]),
     );
   }
@@ -70,8 +75,8 @@ Widget _box(String label, String hinter) {
   return Container(
     padding: const EdgeInsets.all(15),
     decoration: const BoxDecoration(
-        color: Colors.blue,
-        borderRadius: BorderRadius.all(Radius.circular(5)),
+        color: Color(0xFFe74c3c),
+        borderRadius: BorderRadius.all(Radius.circular(0)),
         boxShadow: [
           BoxShadow(color: Colors.black26, blurRadius: 10, offset: Offset(0, 3))
         ]),

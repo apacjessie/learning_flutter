@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:sample_flutter/class/todos.dart';
-import 'package:sample_flutter/components/tile.dart';
-import 'package:sample_flutter/providers/providers.dart';
+import 'package:checkmate/class/todos.dart';
+import 'package:checkmate/components/tile.dart';
+import 'package:checkmate/providers/providers.dart';
 
 class CompleteTodos extends StatelessWidget {
   const CompleteTodos({super.key});
@@ -30,14 +30,16 @@ class CompleteTodos extends StatelessWidget {
           const Text(
             "List of completed task(s)",
             style: TextStyle(
-                fontSize: 16, color: Colors.blue, fontWeight: FontWeight.bold),
+                fontSize: 16,
+                color: Color(0xFFe74c3c),
+                fontWeight: FontWeight.bold),
           ),
           const SizedBox(height: 3),
           const Text(
             "Slide to left or right to delete task",
             style: TextStyle(
               fontSize: 14,
-              color: Colors.deepPurple,
+              color: Colors.grey,
             ),
           ),
           const SizedBox(height: 10),
@@ -45,25 +47,17 @@ class CompleteTodos extends StatelessWidget {
             alignment: Alignment.topLeft,
             child: IntrinsicWidth(
               child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.red, shape: const LinearBorder()),
-                  onPressed: () {
-                    Provider.of<Providers>(context, listen: false)
-                        .clearCompleteTask();
-                  },
-                  child: const Row(
-                    children: [
-                      Icon(
-                        Icons.clear_all,
-                        color: Colors.white,
-                      ),
-                      SizedBox(width: 10),
-                      Text(
-                        "Clear all",
-                        style: TextStyle(color: Colors.white),
-                      ),
-                    ],
-                  )),
+                style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.red, shape: const LinearBorder()),
+                onPressed: () {
+                  Provider.of<Providers>(context, listen: false)
+                      .clearCompleteTask();
+                },
+                child: const Text(
+                  "Clear",
+                  style: TextStyle(color: Colors.white),
+                ),
+              ),
             ),
           ),
           const SizedBox(height: 14),

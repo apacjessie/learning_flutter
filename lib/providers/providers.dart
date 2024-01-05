@@ -1,9 +1,9 @@
 // ignore_for_file: avoid_print
 
 import 'package:flutter/material.dart';
-import 'package:sample_flutter/class/todos.dart';
-import 'package:sample_flutter/class/user.dart';
-import 'package:sample_flutter/main.dart';
+import 'package:checkmate/class/todos.dart';
+import 'package:checkmate/class/user.dart';
+import 'package:checkmate/main.dart';
 
 class Providers extends ChangeNotifier {
   bool _isLoggedIn = false;

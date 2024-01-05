@@ -1,4 +1,4 @@
-import 'package:sample_flutter/class/todos.dart';
+import 'package:checkmate/class/todos.dart';
 
 class User {
   String id;

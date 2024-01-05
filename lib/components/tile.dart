@@ -9,17 +9,14 @@ Dismissible tile(id, task, isComplete, toggleTaskCompletion, deleteTask) {
           CheckboxListTile(
             value: isComplete,
             onChanged: (_) => toggleTaskCompletion(id),
-            activeColor: Colors.blue,
+            activeColor: Colors.black,
             checkColor: Colors.white,
             tileColor: isComplete
-                ? Colors.blue.withOpacity(0.8)
-                : Colors.red.withOpacity(0.8),
+                ? const Color(0xFF2ecc71)
+                : Colors.grey.withOpacity(0.3),
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(5.0),
+              borderRadius: BorderRadius.circular(0),
             ),
-            secondary: isComplete
-                ? const Icon(Icons.check, color: Colors.white)
-                : const Icon(Icons.close),
             title: Text(
               task,
               style: TextStyle(color: isComplete ? Colors.white : Colors.black),
